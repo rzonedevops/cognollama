@@ -191,6 +191,12 @@ print(f"Total agents: {metrics['total_agents']}")
 print(f"Knowledge base size: {metrics['knowledge_base_size']}")
 ```
 
+**See the [examples/](./examples/) directory** for complete usage examples including:
+- Initializing and configuring the swarm
+- Adding knowledge to the distributed AtomSpace
+- Processing documents with swarm intelligence
+- Querying and activation spreading
+
 ### MCP Tools for RAGSwarm
 
 The following MCP tools are available for interacting with the swarm:
