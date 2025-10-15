@@ -142,6 +142,71 @@ And start exploring the app at `http://localhost:8501/`.
 
 Contribute to this project following the [guidelines](./CONTRIBUTING.md).
 
+---
+
+## 🌐 OpenCog-Inspired RAGSwarm Network
+
+NotebookLlaMa now includes a distributed RAGSwarm architecture inspired by OpenCog's hypergraph knowledge representation. This enables:
+
+- **Distributed Knowledge Representation**: OpenCog-inspired AtomSpace for storing knowledge as a hypergraph
+- **Swarm Intelligence**: Multiple specialized agents collaborate on document processing and Q&A
+- **Agent Roles**:
+  - 🔍 **Retrievers**: Specialize in information retrieval from the knowledge base
+  - 🧠 **Reasoners**: Perform logical reasoning and inference
+  - 🔄 **Synthesizers**: Combine information from multiple sources
+  - ✅ **Validators**: Validate responses for accuracy and consistency
+  - 🎯 **Coordinators**: Orchestrate swarm activities
+
+### RAGSwarm Configuration
+
+Configure the swarm in your `.env` file:
+
+```bash
+# RAGSwarm Configuration
+SWARM_NODE_ID="primary"              # Node identifier
+SWARM_NUM_RETRIEVERS="3"             # Number of retriever agents
+SWARM_NUM_REASONERS="2"              # Number of reasoner agents
+SWARM_NUM_SYNTHESIZERS="1"           # Number of synthesizer agents
+SWARM_NUM_VALIDATORS="1"             # Number of validator agents
+SWARM_ENABLE_DISTRIBUTED="false"     # Enable distributed mode
+SWARM_SYNC_INTERVAL="60"             # Sync interval in seconds
+```
+
+### Using RAGSwarm
+
+The swarm is automatically integrated with NotebookLlaMa. You can also access it programmatically:
+
+```python
+from notebookllama.swarm_integration import get_swarm_processor
+
+# Get the swarm processor
+processor = get_swarm_processor()
+
+# Query the swarm
+result = await processor.query_swarm("What are the key concepts in this document?")
+
+# Get swarm metrics
+metrics = await processor.get_swarm_metrics()
+print(f"Total agents: {metrics['total_agents']}")
+print(f"Knowledge base size: {metrics['knowledge_base_size']}")
+```
+
+**See the [examples/](./examples/) directory** for complete usage examples including:
+- Initializing and configuring the swarm
+- Adding knowledge to the distributed AtomSpace
+- Processing documents with swarm intelligence
+- Querying and activation spreading
+
+### MCP Tools for RAGSwarm
+
+The following MCP tools are available for interacting with the swarm:
+
+- `query_swarm_tool`: Query the distributed RAGSwarm network
+- `get_swarm_status_tool`: Get current swarm status and metrics
+- `initialize_swarm_tool`: Initialize or reconfigure the swarm
+
+---
+
 ### License
 
 This project is provided under an [MIT License](./LICENSE).
