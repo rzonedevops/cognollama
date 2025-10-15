@@ -13,7 +13,7 @@ import random
 from datetime import datetime
 import json
 
-from opencog_atomspace import AtomSpace, Atom, AtomType, DistributedAtomSpace
+from .opencog_atomspace import AtomSpace, Atom, AtomType, DistributedAtomSpace
 
 
 class AgentRole(Enum):

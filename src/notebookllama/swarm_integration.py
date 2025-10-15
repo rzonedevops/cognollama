@@ -9,15 +9,24 @@ import os
 import sys
 from typing import Dict, List, Optional, Any, Tuple
 import asyncio
-from dotenv import load_dotenv
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from notebookllama.ragswarm import RAGSwarmOrchestrator, AgentRole
-from notebookllama.opencog_atomspace import Atom, AtomType
-from notebookllama.models import Notebook
+from .ragswarm import RAGSwarmOrchestrator, AgentRole
+from .opencog_atomspace import Atom, AtomType
 
-load_dotenv()
+try:
+    from .models import Notebook
+except ImportError:
+    # models module may not be available in all contexts
+    Notebook = None
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    # dotenv is optional
+    pass
 
 
 class SwarmNotebookProcessor:
